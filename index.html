@@ -73,14 +73,15 @@
   .hero{display:grid;grid-template-columns:1fr 0.9fr;gap:50px;
     padding-top:60px;padding-bottom:64px;align-items:center}
   .bio-lead{font-family:Georgia,"Times New Roman",serif;font-size:16.5px;line-height:1.8;
-    color:#d8d8dc;opacity:0;animation:bioIn 1.8s ease .25s forwards}
+    color:#d8d8dc;padding-left:64px;opacity:0;animation:bioIn 1.8s ease .25s forwards}
   @keyframes bioIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){
     .bio-lead{opacity:1;animation:none;transform:none}
   }
+  /* hanging cap: E sits in the left gutter, all body lines align at the indent */
   .bio-lead::first-letter{
     float:left;font-family:"Playfair Display",Georgia,serif;font-weight:700;
-    font-size:76px;line-height:.56;margin-top:0;padding:0 11px 0 3px;color:#fff;
+    font-size:76px;line-height:.56;margin:0 0 0 -64px;padding:0;color:#fff;
   }
   .hero-photo{
     height:540px;position:relative;
@@ -155,15 +156,16 @@
 
   @media (max-width:860px){
     .hero{grid-template-columns:1fr;gap:28px;padding-top:36px;padding-bottom:48px}
-    .hero-photo{height:420px;order:-1}
+    .hero-photo{height:420px;order:-1;margin-left:-18px;margin-right:-18px}
   }
   @media (max-width:560px){
     .wrap{padding-left:28px;padding-right:28px}
     .bar{flex-wrap:wrap;gap:14px}
     .mast{font-size:24px}
     .hero{gap:24px;padding-top:30px;padding-bottom:42px}
-    .hero-photo{height:330px}
-    .bio-lead{font-size:14px;line-height:1.75}
+    .hero-photo{height:330px;margin-left:-22px;margin-right:-22px}
+    .bio-lead{font-size:14px;line-height:1.75;padding-left:46px}
+    .bio-lead::first-letter{font-size:54px;margin-left:-46px}
     .row{grid-template-columns:48px 1fr}
     .row .lbl{grid-column:2;text-align:left;margin-top:-6px}
     a.row .ttl::after{opacity:1}
