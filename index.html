@@ -128,8 +128,9 @@
 
   /* support rotator */
   .rotator{position:relative;min-height:64px}
-  .rmx-name{display:inline-block;transition:opacity .45s ease}
-  .rmx-name.rmx-out{opacity:0}
+  .rmx-name{display:inline-block}
+  .rmx-fade{transition:opacity .55s ease}
+  .rmx-out{opacity:0}
   .rot-item{position:absolute;left:0;top:0;right:0;opacity:0;transform:translateY(7px);
     transition:opacity .9s ease,transform .9s ease;pointer-events:none}
   .rot-item.show{opacity:1;transform:none;pointer-events:auto}
@@ -249,8 +250,8 @@
   <section class="support wrap">
     <h2>Support</h2>
     <div class="rotator" id="supportRotator">
-      <div class="rot-text">Remixed by <span id="rmxName" class="rmx-name">Triptil</span></div>
-      <div class="rot-meta">Forthcoming remix compilation · After Me</div>
+      <div class="rot-text">Remixed by <span id="rmxName" class="rmx-name rmx-fade">Triptil</span></div>
+      <div class="rot-meta rmx-fade" id="rmxMeta">Forthcoming remix compilation · After Me</div>
     </div>
   </section>
 
@@ -322,20 +323,30 @@
     load(tabs[0].dataset.url, tabs[0].dataset.h);
   })();
 
-  // Support — "Remixed by" stays put, the remixer name fades through one at a time.
+  // Support — "Remixed by" stays put; the remixer name + its release fade through together.
   (function(){
-    var el = document.getElementById('rmxName');
-    if(!el) return;
-    var names = ["Triptil","Costin Rp","Avidel","Falsa Magra","KFM Live","Daniel Broesecke"];
+    var nm = document.getElementById('rmxName');
+    var mt = document.getElementById('rmxMeta');
+    if(!nm || !mt) return;
+    var items = [
+      { name:"Triptil",          meta:"Forthcoming remix compilation · After Me" },
+      { name:"Costin Rp",        meta:"Forthcoming remix compilation · After Me" },
+      { name:"Avidel",           meta:"Forthcoming remix compilation · After Me" },
+      { name:"Falsa Magra",      meta:"Forthcoming remix compilation · After Me" },
+      { name:"KFM Live",         meta:"Forthcoming remix compilation · After Me" },
+      { name:"Daniel Broesecke", meta:"Forthcoming remix compilation · After Me" },
+      { name:"RWN",              meta:"Ivy · Incept EP, Tzinah Records" }
+    ];
     var i = 0;
     setInterval(function(){
-      el.classList.add('rmx-out');
+      nm.classList.add('rmx-out'); mt.classList.add('rmx-out');
       setTimeout(function(){
-        i = (i + 1) % names.length;
-        el.textContent = names[i];
-        el.classList.remove('rmx-out');
-      }, 450);
-    }, 2600);
+        i = (i + 1) % items.length;
+        nm.textContent = items[i].name;
+        mt.textContent = items[i].meta;
+        nm.classList.remove('rmx-out'); mt.classList.remove('rmx-out');
+      }, 550);
+    }, 3200);
   })();
 
   // Booking popover — opens at the click point, shows the email.
