@@ -250,7 +250,7 @@
   <section class="support wrap">
     <h2>Support</h2>
     <div class="rotator" id="supportRotator">
-      <div class="rot-text">Remixed by <span id="rmxName" class="rmx-name rmx-fade">Triptil</span></div>
+      <div class="rot-text rmx-fade" id="rmxLine">Remixed by <span id="rmxName" class="rmx-name">Triptil</span></div>
       <div class="rot-meta rmx-fade" id="rmxMeta">Forthcoming remix compilation · After Me</div>
     </div>
   </section>
@@ -325,9 +325,10 @@
 
   // Support — "Remixed by" stays put; the remixer name + its release fade through together.
   (function(){
+    var line = document.getElementById('rmxLine');
     var nm = document.getElementById('rmxName');
     var mt = document.getElementById('rmxMeta');
-    if(!nm || !mt) return;
+    if(!line || !nm || !mt) return;
     var items = [
       { name:"Triptil",          meta:"Forthcoming remix compilation · After Me" },
       { name:"Costin Rp",        meta:"Forthcoming remix compilation · After Me" },
@@ -339,12 +340,12 @@
     ];
     var i = 0;
     setInterval(function(){
-      nm.classList.add('rmx-out'); mt.classList.add('rmx-out');
+      line.classList.add('rmx-out'); mt.classList.add('rmx-out');
       setTimeout(function(){
         i = (i + 1) % items.length;
         nm.textContent = items[i].name;
         mt.textContent = items[i].meta;
-        nm.classList.remove('rmx-out'); mt.classList.remove('rmx-out');
+        line.classList.remove('rmx-out'); mt.classList.remove('rmx-out');
       }, 550);
     }, 3200);
   })();
