@@ -127,7 +127,9 @@
   .embed iframe{display:block;width:100%;border:0}
 
   /* support rotator */
-  .rotator{position:relative;min-height:120px}
+  .rotator{position:relative;min-height:64px}
+  .rmx-name{display:inline-block;transition:opacity .45s ease}
+  .rmx-name.rmx-out{opacity:0}
   .rot-item{position:absolute;left:0;top:0;right:0;opacity:0;transform:translateY(7px);
     transition:opacity .9s ease,transform .9s ease;pointer-events:none}
   .rot-item.show{opacity:1;transform:none;pointer-events:auto}
@@ -138,7 +140,7 @@
   @media (max-width:860px){
     .rot-text{font-size:16px}
     .rot-text.q{font-size:18px}
-    .rotator{min-height:140px}
+    .rotator{min-height:92px}
     /* mobile: sticky nav that hides on scroll-down, reveals on scroll-up */
     .bar{position:sticky;top:0;z-index:50;background:var(--bg);
       transition:transform .28s ease;will-change:transform}
@@ -246,7 +248,10 @@
 
   <section class="support wrap">
     <h2>Support</h2>
-    <div class="rotator" id="supportRotator"></div>
+    <div class="rotator" id="supportRotator">
+      <div class="rot-text">Remixed by <span id="rmxName" class="rmx-name">Triptil</span></div>
+      <div class="rot-meta">Forthcoming remix compilation · After Me</div>
+    </div>
   </section>
 
 </main>
@@ -317,27 +322,20 @@
     load(tabs[0].dataset.url, tabs[0].dataset.h);
   })();
 
-  // Support — slow fade-rotation of credibility lines. Edit the items array to taste.
+  // Support — "Remixed by" stays put, the remixer name fades through one at a time.
   (function(){
-    var items = [
-      { q:false, text:"Remixed by Triptil, Costin Rp, Avidel, Falsa Magra, KFM Live and Daniel Broesecke.", meta:"Forthcoming remix compilation · After Me" }
-    ];
-    var box = document.getElementById('supportRotator');
-    if(!box) return;
-    var els = items.map(function(it){
-      var d = document.createElement('div'); d.className = 'rot-item';
-      var t = document.createElement('div'); t.className = 'rot-text' + (it.q ? ' q' : ''); t.textContent = it.text;
-      var m = document.createElement('div'); m.className = 'rot-meta'; m.textContent = it.meta;
-      d.appendChild(t); d.appendChild(m); box.appendChild(d); return d;
-    });
-    var i = 0; els[0].classList.add('show');
-    if(els.length > 1){
-      setInterval(function(){
-        els[i].classList.remove('show');
-        i = (i + 1) % els.length;
-        els[i].classList.add('show');
-      }, 4800);
-    }
+    var el = document.getElementById('rmxName');
+    if(!el) return;
+    var names = ["Triptil","Costin Rp","Avidel","Falsa Magra","KFM Live","Daniel Broesecke"];
+    var i = 0;
+    setInterval(function(){
+      el.classList.add('rmx-out');
+      setTimeout(function(){
+        i = (i + 1) % names.length;
+        el.textContent = names[i];
+        el.classList.remove('rmx-out');
+      }, 450);
+    }, 2600);
   })();
 
   // Booking popover — opens at the click point, shows the email.
