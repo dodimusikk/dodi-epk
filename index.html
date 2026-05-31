@@ -302,9 +302,8 @@
       var src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
         '&color=%23d8d8d8&inverse=true&auto_play=false&show_user=true' +
         '&hide_related=true&show_comments=false&show_reposts=false&show_teaser=false';
-      var hh = window.matchMedia('(max-width:560px)').matches ? Math.min(h, 300) : h;
-      player.style.height = hh + 'px';
-      player.setAttribute('height', hh);
+      player.style.height = h + 'px';
+      player.setAttribute('height', h);
       player.src = src;
     }
     tabs.forEach(function(tab){
