@@ -170,7 +170,7 @@
     .hero{gap:24px;padding-top:30px;padding-bottom:42px}
     .hero-photo{height:300px;margin-left:-22px;margin-right:-22px}
     /* mobile: same classic drop cap as desktop, scaled down */
-    .bio-lead{font-size:13px;line-height:1.75}
+    .bio-lead{font-size:13.5px;line-height:1.75}
     .bio-lead::first-letter{font-size:54px}
     .row{grid-template-columns:48px 1fr}
     .row .ttl{font-size:14px}
@@ -179,8 +179,9 @@
     .row .lbl{grid-column:2;text-align:left;margin-top:-6px;font-size:12px}
     a.row .ttl::after{opacity:1}
     .tab{font-size:11px}
-    .rot-text{font-size:15px}
-    .rot-text.q{font-size:16.5px}
+    .rot-text{font-size:14px}
+    .rot-text.q{font-size:15px}
+    .support h2{font-size:12px}
   }
 </style>
 </head>
@@ -301,8 +302,9 @@
       var src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) +
         '&color=%23d8d8d8&inverse=true&auto_play=false&show_user=true' +
         '&hide_related=true&show_comments=false&show_reposts=false&show_teaser=false';
-      player.style.height = h + 'px';
-      player.setAttribute('height', h);
+      var hh = window.matchMedia('(max-width:560px)').matches ? Math.min(h, 300) : h;
+      player.style.height = hh + 'px';
+      player.setAttribute('height', hh);
       player.src = src;
     }
     tabs.forEach(function(tab){
