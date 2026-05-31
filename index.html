@@ -129,7 +129,7 @@
   /* support rotator */
   .rotator{position:relative;min-height:64px}
   .rmx-name{display:inline-block}
-  .rmx-fade{transition:opacity .55s ease}
+  .rmx-fade{transition:opacity .6s ease}
   .rmx-out{opacity:0}
   .rot-item{position:absolute;left:0;top:0;right:0;opacity:0;transform:translateY(7px);
     transition:opacity .9s ease,transform .9s ease;pointer-events:none}
@@ -346,8 +346,8 @@
         nm.textContent = items[i].name;
         mt.textContent = items[i].meta;
         line.classList.remove('rmx-out'); mt.classList.remove('rmx-out');
-      }, 550);
-    }, 3200);
+      }, 600);
+    }, 4600);
   })();
 
   // Booking popover — opens at the click point, shows the email.
