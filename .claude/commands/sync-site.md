@@ -11,11 +11,14 @@ facts and links; this page is the public rendering. This command reconciles them
 
 1. **Read the truth**: `../dodi_artist_labels_carreer/catalog/released.md`,
    `catalog/unreleased.md`, `assets/links.md` (mixes/playlists), `identity/bio.md`.
+   (`assets/epk-content.md` is the historical build plan, not a sync input.)
 2. **Diff against `index.html`**:
    - Discography rows (`<section class="disco">`): every released item present, with
      catalog numbers, correct Bandcamp links, `· various artists` styling for VA
-     appearances. Forthcoming rows (`class="ttl fc"`) only for **confirmed, placed**
-     releases from `unreleased.md` — nothing tentative goes public.
+     appearances. Forthcoming rows (`class="ttl fc"`) only for releases that are
+     **confirmed, placed, and cleared for public** in `unreleased.md` — nothing
+     tentative or embargoed goes public. Respect "not public yet" flags (e.g. SATYA
+     stays off the page until close to its date, even though the slot is confirmed).
    - Mixes tabs (`#mixTabs`): URLs still match the canonical mix/playlist links.
    - Support rotator: names/quotes still accurate and confirmed (anti-claims rule:
      nothing unverified).

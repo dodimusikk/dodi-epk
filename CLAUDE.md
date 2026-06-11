@@ -3,7 +3,11 @@
 Static one-page EPK for Dodi, live at **https://dodi.fm** (GitHub Pages, deploys from
 `main` — a push publishes immediately, so confirm before pushing).
 
-- Edit `index.html` only; press shot at `assets/press.jpg`; `CNAME` + `.nojekyll` must stay.
+- Page content lives in `index.html` (single file, no build step); press shot at
+  `assets/press.jpg` (© Albin Händig); favicon at `assets/favicon.svg`; `CNAME` +
+  `.nojekyll` must stay.
+- Weekly link-check workflow (`.github/workflows/link-check.yml`) opens an issue when
+  an external link dies (ra.co + instagram excluded — they bot-block).
 - This repo is the **single source of truth** for the EPK. Don't create copies in other
   projects (a duplicate in the career repo was removed 2026-06-10).
 - Content/links come from `../dodi_artist_labels_carreer` (`assets/links.md`,
