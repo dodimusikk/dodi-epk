@@ -5,9 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DODI — EPK</title>
 <meta name="description" content="Dodi — Stockholm-based minimal / microhouse DJ and producer. Press kit, discography, mixes and booking.">
+<meta name="theme-color" content="#0c0c0d">
+<link rel="canonical" href="https://dodi.fm/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DODI">
+<meta property="og:title" content="DODI — EPK">
+<meta property="og:description" content="Stockholm-based minimal / microhouse DJ and producer. Press kit, discography, mixes and booking.">
+<meta property="og:url" content="https://dodi.fm/">
+<meta property="og:image" content="https://dodi.fm/assets/press.jpg">
+<meta property="og:image:width" content="1400">
+<meta property="og:image:height" content="933">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Dodi",
+  "alternateName": "Dodi (SE)",
+  "url": "https://dodi.fm/",
+  "image": "https://dodi.fm/assets/press.jpg",
+  "genre": ["minimal", "microhouse"],
+  "sameAs": [
+    "https://soundcloud.com/d-odi",
+    "https://ra.co/dj/dodi-sw",
+    "https://open.spotify.com/artist/545j8N7jbwv1ADiYYExclM",
+    "https://instagram.com/dodi.musik/",
+    "https://bandcamp.com/dodi_"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0c0c0d;
@@ -17,7 +48,6 @@
     --muted:#8c8c93;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
   body{
     background:var(--bg);
     color:var(--ink);
@@ -86,13 +116,6 @@
     height:540px;position:relative;
     background:#161618 url('assets/press.jpg') 62% 12%/cover no-repeat;
   }
-  .hero-photo::after{
-    content:"drop press.jpg in /epk/assets/";
-    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    color:#55555c;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
-    background:#161618;
-  }
-  .hero-photo[data-has-photo]::after{display:none}
 
   /* discography */
   .disco{display:grid;gap:0}
@@ -112,7 +135,7 @@
   .row .lbl{color:var(--muted);font-size:13px;text-align:right}
   .fc{color:#9a9aa0}
   .fc::before{content:"forthcoming";font-size:10px;letter-spacing:.14em;
-    text-transform:uppercase;color:#6a6a70;display:block;margin-bottom:1px}
+    text-transform:uppercase;color:#7e7e86;display:block;margin-bottom:1px}
 
   /* mixes */
   .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
@@ -131,16 +154,11 @@
   .rmx-name{display:inline-block}
   .rmx-fade{transition:opacity .6s ease}
   .rmx-out{opacity:0}
-  .rot-item{position:absolute;left:0;top:0;right:0;opacity:0;transform:translateY(7px);
-    transition:opacity .9s ease,transform .9s ease;pointer-events:none}
-  .rot-item.show{opacity:1;transform:none;pointer-events:auto}
   .rot-text{font-size:20px;line-height:1.42;color:#ededed;max-width:58ch}
-  .rot-text.q{font-family:"Playfair Display",Georgia,serif;font-size:18px;color:#ededed}
   .rot-meta{margin-top:13px;font-size:12px;letter-spacing:.14em;
     text-transform:uppercase;color:var(--muted)}
   @media (max-width:860px){
     .rot-text{font-size:16px}
-    .rot-text.q{font-size:18px}
     .rotator{min-height:92px}
     /* mobile: sticky nav that hides on scroll-down, reveals on scroll-up */
     .bar{position:sticky;top:0;z-index:50;background:var(--bg);
@@ -184,7 +202,6 @@
     a.row .ttl::after{opacity:1}
     .tab{font-size:11px}
     .rot-text{font-size:14px}
-    .rot-text.q{font-size:15px}
     .support h2{font-size:12px}
   }
 </style>
@@ -215,7 +232,7 @@
     <div class="hero-bio">
       <p class="bio-lead">Rolling, hypnotic, groove-led minimal and microhouse. Based in Stockholm.</p>
     </div>
-    <figure class="hero-photo" id="heroPhoto"></figure>
+    <figure class="hero-photo" role="img" aria-label="Dodi press photo"></figure>
   </div>
 </header>
 
@@ -244,7 +261,7 @@
       <button class="tab" data-url="https://soundcloud.com/d-odi/sets/releases" data-h="450">Productions</button>
     </div>
     <div class="embed">
-      <iframe id="scPlayer" height="166" scrolling="no" allow="autoplay"></iframe>
+      <iframe id="scPlayer" title="SoundCloud player" height="166" scrolling="no" allow="autoplay" loading="lazy"></iframe>
     </div>
   </section>
 
@@ -265,14 +282,6 @@
 </div>
 
 <script>
-  // Hide the "drop press.jpg" placeholder once a real photo loads.
-  (function(){
-    var el = document.getElementById('heroPhoto');
-    var img = new Image();
-    img.onload = function(){ el.setAttribute('data-has-photo','1'); };
-    img.src = 'assets/press.jpg';
-  })();
-
   // Music dropdown — tap toggle for touch/mobile (hover handles desktop via CSS).
   (function(){
     var d = document.getElementById('musicDrop');
@@ -367,7 +376,13 @@
     document.querySelectorAll('.bk-open').forEach(function(btn){
       btn.addEventListener('click', function(e){
         e.preventDefault(); e.stopPropagation();
-        openAt(e.clientX, e.clientY);
+        if (e.detail && (e.clientX || e.clientY)) {
+          openAt(e.clientX, e.clientY);
+        } else {
+          // keyboard activation: no pointer coords — anchor to the button
+          var r = btn.getBoundingClientRect();
+          openAt(r.left, r.bottom + 10);
+        }
       });
     });
     back.addEventListener('click', close);
