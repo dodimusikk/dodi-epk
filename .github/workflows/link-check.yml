@@ -29,9 +29,11 @@ jobs:
           for u in $(grep -oE 'https://[^"'"'"' <)]+' index.html | sort -u | grep -Ev "$skip"); do
             code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 20 --retry 2 \
                    -A 'Mozilla/5.0 (dodi-epk link check)' "$u")
+            # 403/429 = bot-gating of datacenter IPs (SoundCloud etc.), not rot.
+            # Real rot shows as 404/410/5xx/000.
             case "$code" in
-              2*|429) echo "ok   $code  $u" ;;
-              *)      echo "FAIL $code  $u" | tee -a broken.txt ;;
+              2*|403|429) echo "ok   $code  $u" ;;
+              *)          echo "FAIL $code  $u" | tee -a broken.txt ;;
             esac
           done
           [ ! -s broken.txt ]
