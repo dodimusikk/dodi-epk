@@ -112,10 +112,14 @@
     float:left;font-family:"Playfair Display",Georgia,serif;font-weight:700;
     font-size:42px;line-height:.56;margin-top:0;padding:0 5px 0 3px;color:#cdced2;
   }
-  .hero-photo{
-    height:540px;position:relative;
-    background:#161618 url('assets/press.jpg') 62% 12%/cover no-repeat;
-  }
+  .hero-photo{height:540px;position:relative;background:#161618}
+  .hero-photo .ph{position:absolute;inset:0;
+    background:url('assets/press.jpg') 62% 12%/cover no-repeat}
+  .photo-cred{position:absolute;top:100%;left:0;right:0;margin-top:10px;
+    display:flex;justify-content:space-between;gap:16px;
+    font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .photo-cred a{transition:color .12s}
+  .photo-cred a:hover{color:var(--ink)}
 
   /* discography */
   .disco{display:grid;gap:0}
@@ -181,7 +185,9 @@
 
   @media (max-width:860px){
     .hero{grid-template-columns:1fr;gap:28px;padding-top:36px;padding-bottom:48px}
-    .hero-photo{height:420px;order:-1;margin-left:-18px;margin-right:-18px}
+    .hero-photo{height:420px;order:-1;margin-left:-18px;margin-right:-18px;
+      margin-bottom:10px} /* room for the hanging photo credit */
+    .photo-cred{left:18px;right:18px;margin-top:8px}
   }
   @media (max-width:560px){
     .wrap{padding-left:28px;padding-right:28px}
@@ -191,6 +197,7 @@
     .mast{font-size:21px}
     .hero{gap:24px;padding-top:30px;padding-bottom:42px}
     .hero-photo{height:300px;margin-left:-22px;margin-right:-22px}
+    .photo-cred{left:22px;right:22px}
     /* mobile: same classic drop cap as desktop, scaled down */
     .bio-lead{font-size:13px;line-height:1.75;margin-left:-6px}
     .bio-lead::first-letter{font-size:22px;margin-top:1px;padding:0 3px 1px 2px}
@@ -232,7 +239,13 @@
     <div class="hero-bio">
       <p class="bio-lead">Rolling, hypnotic, groove-led minimal and microhouse. Based in Stockholm.</p>
     </div>
-    <figure class="hero-photo" role="img" aria-label="Dodi press photo"></figure>
+    <figure class="hero-photo">
+      <div class="ph" role="img" aria-label="Dodi press photo"></div>
+      <figcaption class="photo-cred">
+        <span>Photo · Albin Händig</span>
+        <a href="assets/press-hires.jpg" download="dodi-press-albin-handig.jpg">Hi-res ↓</a>
+      </figcaption>
+    </figure>
   </div>
 </header>
 
