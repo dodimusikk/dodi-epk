@@ -27,13 +27,16 @@ jobs:
           skip='ra\.co|instagram\.com|fonts\.gstatic\.com|w\.soundcloud\.com|schema\.org'
           : > broken.txt
           for u in $(grep -oE 'https://[^"'"'"' <)]+' index.html | sort -u | grep -Ev "$skip"); do
+            # "|| true": connection-level failures must not abort the step (bash -e)
             code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 20 --retry 2 \
-                   -A 'Mozilla/5.0 (dodi-epk link check)' "$u")
+                   -A 'Mozilla/5.0 (dodi-epk link check)' "$u" || true)
+            [ -n "$code" ] || code=000
             # 403/429 = bot-gating of datacenter IPs (SoundCloud etc.), not rot.
             # Real rot shows as 404/410/5xx/000.
             case "$code" in
               2*|403|429) echo "ok   $code  $u" ;;
-              *)          echo "FAIL $code  $u" | tee -a broken.txt ;;
+              *)          echo "FAIL $code  $u" | tee -a broken.txt
+                          echo "::error title=Broken link::$code $u" ;;
             esac
           done
           [ ! -s broken.txt ]
