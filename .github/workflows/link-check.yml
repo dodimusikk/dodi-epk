@@ -16,15 +16,16 @@ jobs:
   links:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Check every external URL in index.html
         run: |
           # Skipped: ra.co + instagram.com (bot-blocked: 403 / login wall),
-          # fonts.gstatic.com (preconnect origin only, 404 on /),
+          # fonts.gstatic.com + bare fonts.googleapis.com (preconnect origins, 404
+          # on / by design — the full /css2 stylesheet URL is still checked),
           # w.soundcloud.com (player base URL inside JS, not a content link),
           # schema.org (JSON-LD @context).
-          skip='ra\.co|instagram\.com|fonts\.gstatic\.com|w\.soundcloud\.com|schema\.org'
+          skip='ra\.co|instagram\.com|fonts\.gstatic\.com|w\.soundcloud\.com|schema\.org|^https://fonts\.googleapis\.com/?$'
           : > broken.txt
           for u in $(grep -oE 'https://[^"'"'"' <)]+' index.html | sort -u | grep -Ev "$skip"); do
             # "|| true": connection-level failures must not abort the step (bash -e)
