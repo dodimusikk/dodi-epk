@@ -14,7 +14,8 @@ Static one-page EPK for Dodi, live at **https://dodi.fm** (GitHub Pages, deploys
 - **Deliberate absences — don't "fix" by adding:** no dates/gigs section (held back
   2026-06; rationale, re-add trigger and ready markup in career `catalog/gigs.md`);
   no SATYA mention until cleared (career `catalog/unreleased.md`); support rotator
-  names four of six remixers on purpose (career `catalog/released.md`).
+  names four of six remixers on purpose (career `catalog/unreleased.md`, After Me
+  remix-comp entry).
 - If `assets/press.jpg` is replaced: keep the © EXIF, update the `og:image:width/height`
   meta to match, and refresh `assets/press-hires.jpg` (the press download target).
 - This repo is the **single source of truth** for the EPK. Don't create copies in other
