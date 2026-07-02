@@ -270,10 +270,10 @@
   <section class="mixes wrap">
     <h2>Mixes</h2>
     <div class="tabs" id="mixTabs">
-      <button class="tab active" data-url="https://soundcloud.com/d-odi/liveatklubbkabin" data-h="166">Live</button>
-      <button class="tab" data-url="https://soundcloud.com/d-odi/sets/minimal" data-h="450">Minimal series</button>
-      <button class="tab" data-url="https://soundcloud.com/d-odi/sets/minimal-lounge" data-h="450">Minimal Lounge</button>
-      <button class="tab" data-url="https://soundcloud.com/d-odi/sets/releases" data-h="450">Productions</button>
+      <button class="tab active" aria-pressed="true" data-url="https://soundcloud.com/d-odi/liveatklubbkabin" data-h="166">Live</button>
+      <button class="tab" aria-pressed="false" data-url="https://soundcloud.com/d-odi/sets/minimal" data-h="450">Minimal series</button>
+      <button class="tab" aria-pressed="false" data-url="https://soundcloud.com/d-odi/sets/minimal-lounge" data-h="450">Minimal Lounge</button>
+      <button class="tab" aria-pressed="false" data-url="https://soundcloud.com/d-odi/sets/releases" data-h="450">Productions</button>
     </div>
     <div class="embed">
       <iframe id="scPlayer" title="SoundCloud player" height="166" scrolling="no" allow="autoplay" loading="lazy"></iframe>
@@ -339,8 +339,9 @@
     }
     tabs.forEach(function(tab){
       tab.addEventListener('click', function(){
-        tabs.forEach(function(x){ x.classList.remove('active'); });
+        tabs.forEach(function(x){ x.classList.remove('active'); x.setAttribute('aria-pressed','false'); });
         tab.classList.add('active');
+        tab.setAttribute('aria-pressed','true');
         load(tab.dataset.url, tab.dataset.h);
       });
     });
@@ -376,6 +377,7 @@
   (function(){
     var back = document.getElementById('popBack');
     var pop = document.getElementById('bookPop');
+    var opener = null;
 
     function openAt(x, y){
       back.classList.add('show');
@@ -385,12 +387,18 @@
       var top  = Math.min(y, window.innerHeight - h - m);
       pop.style.left = Math.max(m, left) + 'px';
       pop.style.top  = Math.max(m, top)  + 'px';
+      var em = pop.querySelector('.em');
+      if (em) em.focus();   // Tab order: the dialog is far from the trigger in the DOM
     }
-    function close(){ back.classList.remove('show'); pop.classList.remove('show'); }
+    function close(){
+      back.classList.remove('show'); pop.classList.remove('show');
+      if (opener){ opener.focus(); opener = null; }
+    }
 
     document.querySelectorAll('.bk-open').forEach(function(btn){
       btn.addEventListener('click', function(e){
         e.preventDefault(); e.stopPropagation();
+        opener = btn;
         if (e.detail && (e.clientX || e.clientY)) {
           openAt(e.clientX, e.clientY);
         } else {
