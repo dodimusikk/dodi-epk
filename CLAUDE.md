@@ -13,9 +13,16 @@ Static one-page EPK for Dodi, live at **https://dodi.fm** (GitHub Pages, deploys
   personal addresses stay out of history). No Claude trailers, as everywhere.
 - **Deliberate absences — don't "fix" by adding:** no dates/gigs section (held back
   2026-06; rationale, re-add trigger and ready markup in career `catalog/gigs.md`);
-  no SATYA mention until cleared (career `catalog/unreleased.md`); support rotator
-  names four of six remixers on purpose (career `catalog/unreleased.md`, After Me
-  remix-comp entry).
+  no SATYA mention until cleared (career `catalog/unreleased.md`); the Remixes rotator
+  carries **released** remix credits only, and Falsa Magra is left off on purpose even
+  though he's on DAM60 (Dodi, 2026-08-25 — not a name to lean on for credibility); no
+  part 2 of the After Me remix comp on the page until it's out (career
+  `catalog/unreleased.md`).
+- The Remixes section is **not** a support/played-by list, and the header must not imply
+  one: Kirill had no DJ-support data when asked (2026-04-06) and cleared the remixer
+  names as the thing to credit instead. It was headed "Support" until 2026-08-25. A real
+  Support section only goes up if confirmed DJ names arrive (career `catalog/released.md`,
+  DAM60 entry). The fade rotator is deliberate — Dodi likes it; a flat list reads as a CV.
 - If `assets/press.jpg` is replaced: keep the © EXIF, update the `og:image:width/height`
   meta to match, and refresh `assets/press-hires.jpg` (the press download target).
 - This repo is the **single source of truth** for the EPK. Don't create copies in other
