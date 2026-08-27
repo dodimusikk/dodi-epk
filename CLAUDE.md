@@ -23,6 +23,11 @@ Static one-page EPK for Dodi, live at **https://dodi.fm** (GitHub Pages, deploys
   names as the thing to credit instead. It was headed "Support" until 2026-08-25. A real
   Support section only goes up if confirmed DJ names arrive (career `catalog/released.md`,
   DAM60 entry). The fade rotator is deliberate — Dodi likes it; a flat list reads as a CV.
+  In the rotator meta, DAM60 is shown by **catalogue number, not title** ("DAM60 · After
+  Me"): under a header reading "Remixes", above a line reading "Remixed by X", the title
+  "Dodi Remixes" was the third repetition on screen (Dodi, 2026-08-27). Releases with
+  distinct titles keep theirs ("Incept EP · Tzinah Records") — the same rule the
+  discography already follows for After Me's generically-titled records.
 - If `assets/press.jpg` is replaced: keep the © EXIF, update the `og:image:width/height`
   meta to match, and refresh `assets/press-hires.jpg` (the press download target).
 - This repo is the **single source of truth** for the EPK. Don't create copies in other
