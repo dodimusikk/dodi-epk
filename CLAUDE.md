@@ -4,8 +4,8 @@ Static one-page EPK for Dodi, live at **https://dodi.fm** (GitHub Pages, deploys
 `main` — a push publishes immediately, so confirm before pushing).
 
 - Page content lives in `index.html` (single file, no build step); press shot at
-  `assets/press.jpg` (web, 1400px) + `assets/press-hires.jpg` (downloadable hi-res,
-  both © Albin Händig); favicon at `assets/favicon.svg`; `CNAME` + `.nojekyll` must stay.
+  `assets/press.jpg` (web, 1400px, © Albin Händig); favicon at `assets/favicon.svg`;
+  `CNAME` + `.nojekyll` must stay.
 - Weekly link-check workflow (`.github/workflows/link-check.yml`) opens an issue when
   an external link dies (ra.co + instagram excluded — they bot-block; rationale for
   every skip is commented in the workflow).
@@ -29,7 +29,8 @@ Static one-page EPK for Dodi, live at **https://dodi.fm** (GitHub Pages, deploys
   distinct titles keep theirs ("Incept EP · Tzinah Records") — the same rule the
   discography already follows for After Me's generically-titled records.
 - If `assets/press.jpg` is replaced: keep the © EXIF, update the `og:image:width/height`
-  meta to match, and refresh `assets/press-hires.jpg` (the press download target).
+  meta to match, and regenerate `assets/press-kit.zip` if the hero shot is one of the
+  kit photos.
 - This repo is the **single source of truth** for the EPK. Don't create copies in other
   projects (a duplicate in the career repo was removed 2026-06-10).
 - Content/links come from `../dodi_artist_labels_carreer` (`assets/links.md`,
